@@ -128,6 +128,8 @@ export function makeMove(game: Game, move: Move): boolean {
 
   updateCastlingRights(game, found, piece);
 
+  // En passant is only valid immediately after a double pawn push;
+  // clear the target on every other move to enforce this one-move window.
   if (piece.type === "pawn" && Math.abs(found.to.row - found.from.row) === 2) {
     game.enPassantTarget = {
       row: (found.from.row + found.to.row) / 2,

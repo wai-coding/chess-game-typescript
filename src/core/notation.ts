@@ -91,6 +91,7 @@ function disambiguate(
 
   if (ambiguous.length === 0) return "";
 
+  // SAN disambiguation: prefer file, then rank, then both (e.g. Rae1, R1e1, Ra1e1)
   const sameFile = ambiguous.some((m) => m.from.col === move.from.col);
   const sameRank = ambiguous.some((m) => m.from.row === move.from.row);
 
@@ -140,7 +141,7 @@ function getSuffix(
   return enemyMoves.length === 0 ? "#" : "+";
 }
 
-// --- FEN ---
+// FEN helpers
 
 const FEN_PIECE_MAP: Record<string, { type: PieceType; color: Color }> = {
   P: { type: "pawn", color: "white" },

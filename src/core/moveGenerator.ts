@@ -186,6 +186,8 @@ function generateKingMoves(
     }
   }
 
+  // Queenside: b-file square (col 1) must be empty for the rook to pass,
+  // but unlike c1/d1, it does not need to be unattacked per FIDE rules.
   if (canCastleQueenSide) {
     const rook = board[row][0];
     if (
